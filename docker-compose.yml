@@ -1,25 +1,24 @@
-version: "3.4"
 services:
   tdarr:
     image: ghcr.io/haveagitgat/tdarr:latest
     restart: unless-stopped
     ports:
-      - target: 8265
-        published: 8265
-        protocol: tcp
-        mode: host   
-      - target: 8266
-        published: 8266
-        protocol: tcp
-        mode: host
-      - target: 8267
-        published: 8267
-        protocol: tcp
-        mode: host
-      - target: 8268
-        published: 8268
-        protocol: tcp
-        mode: host
+    - target: 8265
+      published: 8265
+      protocol: tcp
+      mode: host
+    - target: 8266
+      published: 8266
+      protocol: tcp
+      mode: host
+    - target: 8267
+      published: 8267
+      protocol: tcp
+      mode: host
+    - target: 8268
+      published: 8268
+      protocol: tcp
+      mode: host
     deploy:
       mode: replicated
       replicas: 1
@@ -32,27 +31,29 @@ services:
           memory: 512M
       placement:
         constraints:
-          - node.labels.deployment.target.tdarr == true
+        - node.labels.deployment.target.tdarr == true
       restart_policy:
         condition: any
     environment:
-      - TZ=America/Chicago
-      - PUID=1000
-      - PGID=33
-      - UMASK_SET=002
-      - serverIP=10.77.110.70
-      - serverPort=8266
-      - webUIPort=8265
-      - internalNode=true
-      - nodeID=DockerNode
+    - TZ=America/Chicago
+    - PUID=1000
+    - PGID=33
+    - auth=${auth}
+    - seededApiKey=${seededApiKey}
+    - UMASK_SET=002
+    - serverIP=10.77.110.70
+    - serverPort=8266
+    - webUIPort=8265
+    - internalNode=true
+    - nodeID=DockerNode
     volumes:
-      - /var/lib/docker/volumes/tdarr-swarm/server:/app/server
-      - /var/lib/docker/volumes/tdarr-swarm/config:/app/configs
-      - /var/lib/docker/volumes/tdarr-swarm/logs:/app/logs
-
-      - /media/Multimedia/Movies:/movies
-      - /media/Multimedia/TV Series:/tv
-      - /media/Multimedia/Music:/music
-      - /media/Multimedia/Incoming/Transcode Cache:/temp
+    - /var/lib/docker/volumes/tdarr-swarm/server:/app/server
+    - /var/lib/docker/volumes/tdarr-swarm/config:/app/configs
+    - /var/lib/docker/volumes/tdarr-swarm/logs:/app/logs
+    - /media/Multimedia/Movies:/movies
+    - /media/Multimedia/TV Series:/tv
+    - /media/Multimedia/Music:/music
+    - /media/Multimedia/Incoming/Transcode Cache:/temp
     devices:
-      - /dev/dri:/dev/dri
+    - /dev/dri:/dev/dri
+volumes: {}
