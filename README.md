@@ -8,8 +8,8 @@ deployment and polls this repository for changes.
 | Portainer stack id | 12 |
 | Portainer host | ore-dock-110-7 |
 | Endpoint | - (id -) |
-| Swarm | 0vmdpsrq1qdy |
-| Live service | tdarr-swarm_tdarr |
+| Swarm | True |
+| Live service | svc:tdarr-swarm_tdarr |
 | Git repo | https://github.com/chaseoriginal/tdarr-swarm |
 | Compose file | `docker-compose.yml` |
 | Auto-update poll | every 900s |
@@ -39,8 +39,8 @@ deployment and polls this repository for changes.
 ## Verifying a deployment
 
 ```bash
-docker service ls --filter name=tdarr-swarm_tdarr
-docker service inspect tdarr-swarm_tdarr --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
+docker service ls --filter name=svc:tdarr-swarm_tdarr
+docker service inspect svc:tdarr-swarm_tdarr --format '{{json .Spec.TaskTemplate.ContainerSpec.Mounts}}'
 ```
 
 A healthy stack shows `1/1` and the same volume names as before.
