@@ -38,7 +38,7 @@ services:
     - TZ=America/Chicago
     - PUID=1000
     - PGID=33
-    - auth=${auth}
+    - auth=true
     - seededApiKey=${seededApiKey}
     - UMASK_SET=002
     - serverIP=10.77.110.70
