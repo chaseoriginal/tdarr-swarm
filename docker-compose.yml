@@ -38,8 +38,8 @@ services:
     - TZ=America/Chicago
     - PUID=1000
     - PGID=33
-    - auth=${auth}
-    - seededApiKey=${seededApiKey}
+    - auth=true
+    - seededApiKey=tapi_D1mHUZs1jMIbRZ8g4HbxgX3PFhwmyLSgd5pZ
     - UMASK_SET=002
     - serverIP=10.77.110.70
     - serverPort=8266
