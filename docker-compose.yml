@@ -1,6 +1,6 @@
 services:
   tdarr:
-    image: 3.08.00
+    image: ghcr.io/haveagitgat/tdarr:3.08.00
     restart: unless-stopped
     ports:
     - target: 8265
